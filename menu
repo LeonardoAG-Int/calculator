@@ -1,0 +1,57 @@
+def mostrar_menu():
+    print("\n--- Calculadora ---")
+    print("1. Sumar")
+    print("2. Restar")
+    print("3. Multiplicar")
+    print("4. Dividir")
+    print("5. Suma avanzada")
+    print("6. Salir")
+
+def main():
+    while True:
+        mostrar_menu()
+        opcion = input("Selecciona una opción (1-6): ")
+
+        if opcion == '6':
+            print("Saliendo de la calculadora. ¡Hasta luego!")
+            break
+
+        elif opcion in ['1', '2', '3', '4']:
+            try:
+                num1 = float(input("Ingresa el primer número: "))
+                num2 = float(input("Ingresa el segundo número: "))
+
+                if opcion == '1':
+                    from sumar import sumar
+                    resultado = sumar(num1, num2)
+                elif opcion == '2':
+                    from restar import restar
+                    resultado = restar(num1, num2)
+                elif opcion == '3':
+                    from multiplicar import multiplicar
+                    resultado = multiplicar(num1, num2)
+                elif opcion == '4':
+                    from dividir import dividir
+                    resultado = dividir(num1, num2)
+
+                print(f"Resultado: {resultado}")
+
+            except ValueError:
+                print("Error: Ingresa valores numéricos válidos.")
+
+        elif opcion == '5':
+            try:
+                from suma_avanzada import suma_avanzada
+
+                numeros = input("Ingresa varios números separados por comas: ")
+                lista_numeros = [float(n) for n in numeros.split(',')]
+                resultado = suma_avanzada(lista_numeros)
+                print(f"Resultado de la suma avanzada: {resultado}")
+
+            except ValueError:
+                print("Error: Asegúrate de ingresar solo números separados por comas.")
+        else:
+            print("Opción inválida. Intenta de nuevo.")
+
+if __name__ == "__main__":
+    main()
